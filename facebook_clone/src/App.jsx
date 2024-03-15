@@ -1,12 +1,18 @@
 // import React from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomeLayout from "./layout/HomeLayout";
+import HomePage from "./pages/home/HomePage";
 
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomeLayout />}>
+          <Route path="" element={<HomePage />} />
+          
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
