@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Badge, Tooltip } from "antd";
-
+import { Badge, Dropdown, Tooltip } from "antd";
 import { LuMenu } from "react-icons/lu";
 
 import profile from "../assets/image/profile.png";
@@ -16,20 +15,239 @@ import shopfill from "../assets/icons/solar_shop-bold.svg";
 import userline from "../assets/icons/solar_user-circle-outline.svg";
 import userfill from "../assets/icons/solar_users-group-rounded-bold.svg";
 import menu from "../assets/icons/menu.svg";
+import chatlink from "../assets/icons/chatFillLink.svg";
+import chatblack from "../assets/icons/chatFill.svg";
+import notification from "../assets/icons/ion_notifcations.svg";
+import notificationLink from "../assets/icons/ion_notifcationsLink.svg";
 import plus from "../assets/icons/ic_round-plus.svg";
+import search from "../assets/icons/ion_search-outline.svg";
+import edit from "../assets/icons/bx_edit.svg";
+import dots from "../assets/icons/tabler_dots.svg";
+import seemess from "../assets/icons/icons8_resize-four-directions.svg";
 
 const Header = () => {
   const [activeNav, setActiveNav] = useState("home");
   const handleLinkClick = (link) => {
     setActiveNav(link);
   };
+  const [visible, setVisible] = useState(false);
+  const [visibleNoti, setVisibleNoti] = useState(false);
+
+  const handleVisibleChange = (visibility) => {
+    setVisible(visibility);
+  };
+  const handleVisibleChangeNoti = (visibility) => {
+    setVisibleNoti(visibility);
+  };
   const overlayInnerStyle = {
     marginTop: "6px",
   };
+
+  const chatItems = [
+    {
+      key: "0",
+      label: "Bessie Cooper",
+      message:
+        "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut al",
+      image: profile,
+    },
+    {
+      key: "1",
+      label: "Jerome Bell",
+      message:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu",
+      image: profile,
+    },
+    {
+      key: "2",
+      label: "Devon Lane",
+      message:
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo con",
+      image: profile,
+    },
+    {
+      key: "3",
+      label: "Esther Howard",
+      message:
+        "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed qu",
+      image: profile,
+    },
+    {
+      key: "4",
+      label: "Courtney Henry",
+      message:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ",
+      image: profile,
+    },
+    {
+      key: "5",
+      label: "Kathryn Murphy",
+      message:
+        "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatu",
+      image: profile,
+    },
+    {
+      key: "6",
+      label: "Jerome Bell",
+      message:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu",
+      image: profile,
+    },
+    {
+      key: "7",
+      label: "Esther Howard",
+      message:
+        "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed qu",
+      image: profile,
+    },
+    {
+      key: "8",
+      label: "Courtney Henry",
+      message:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ",
+      image: profile,
+    },
+    {
+      key: "8",
+      label: "Kathryn Murphy",
+      message:
+        "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatu",
+      image: profile,
+    },
+  ];
+  const renderDropdownChat = () => (
+    <div className="bg-white p-4 rounded-xl border shadow-xl ">
+      <div className="min-h-10 max-h-[800px] overflow-y-auto space-y-4">
+        {/* --------------head------------- */}
+        <div className="flex justify-between items-center ">
+          <div className="text-[24px] font-semibold">Chats</div>
+          <div className="flex justify-center items-center gap-2">
+            <Tooltip title="Options" arrow={false} placement="bottomRight">
+              <div className=" p-[7px] rounded-full cursor-pointer hover:bg-BgIcon duration-200 ">
+                <img src={dots} alt="search" />
+              </div>
+            </Tooltip>
+            <Tooltip
+              title="See all in message"
+              arrow={false}
+              placement="bottomRight"
+            >
+              <div className=" p-[7px] rounded-full cursor-pointer hover:bg-BgIcon duration-200 ">
+                <img src={seemess} alt="search" />
+              </div>
+            </Tooltip>
+            <Tooltip title="New message" arrow={false} placement="bottom">
+              <div className=" p-[7px] rounded-full cursor-pointer hover:bg-BgIcon duration-200 ">
+                <img src={edit} alt="option" />
+              </div>
+            </Tooltip>
+          </div>
+        </div>
+        {/* ---------search---------------- */}
+        <div className="bg-BgIcon flex justify-start items-center p-1 rounded-full  ">
+          <div className="flex justify-start items-center gap-2 ml-2 w-full ">
+            <div className="w[20px]">
+              <img src={search} alt="search" />
+            </div>
+            <input
+              className="bg-transparent focus:outline-none w-full mx-1 "
+              type="text"
+              placeholder="Search Messager"
+            />
+          </div>
+        </div>
+        {/* ---------search---------------- */}
+        <div className="flex justify-start items-center gap-4">
+          <div className="text-4 text-sky-500 font-semibold bg-sky-500 bg-opacity-10 rounded-full px-5 py-2 flex justify-center items-center cursor-pointer hover:bg-opacity-20 duration-300 ">
+            Inbox
+          </div>
+          <div className="flex justify-center items-center text-4 font-semibold px-5 py-2 rounded-full hover:bg-BgIcon cursor-pointer duration-300 ">
+            Communities
+          </div>
+        </div>
+        <ul className="flex flex-col justify-start items-start gap-5 w-[379px] ">
+          {chatItems.map((item, index) => (
+            <div key={index} className="relative group ">
+              <div className="flex justify-center items-center gap-1 hover:bg-BgIcon rounded-lg cursor-pointer duration-300">
+                <img src={item.image} alt="profile" className="w-[56px]" />
+
+                <div className="flex flex-col justify-start items-start p-2">
+                  <div className="font-medium">{item.label}</div>
+                  <div className=" text-TextTitle line-clamp-1">
+                    {item.message}
+                  </div>
+                </div>
+              </div>
+
+              <div className=" absolute hidden group-hover:block top-2.5 right-2 p-[7px] rounded-full cursor-pointer bg-white hover:bg-BgHover border duration-300 ">
+                <img src={dots} alt="search" />
+              </div>
+            </div>
+          ))}
+        </ul>
+      </div>
+
+      <div className="text-Link font-medium text-4 flex justify-center items-center cursor-pointer hover:underline py-2 border-t ">
+        See all in messenger
+      </div>
+    </div>
+  );
+  const renderDropdownNotification = () => (
+    <div className="bg-white p-4 rounded-xl border shadow-xl ">
+      <div className="min-h-10 max-h-[800px] overflow-y-auto  hidden-scrollbar space-y-4">
+        {/* --------------head------------- */}
+        <div className="flex justify-between items-center ">
+          <div className="text-[24px] font-semibold">Notifications</div>
+
+          <Tooltip title="Options" arrow={false} placement="bottomRight">
+            <div className=" p-[7px] rounded-full cursor-pointer hover:bg-BgIcon duration-200 ">
+              <img src={dots} alt="search" />
+            </div>
+          </Tooltip>
+        </div>
+
+        {/* ---------Unread---------------- */}
+        <div className="flex justify-start items-center gap-4">
+          <div className="text-4 text-sky-500 font-semibold bg-sky-500 bg-opacity-10 rounded-full px-5 py-2 flex justify-center items-center cursor-pointer hover:bg-opacity-20 duration-300 ">
+            All
+          </div>
+          <div className="flex justify-center items-center text-4 font-semibold px-5 py-2 rounded-full hover:bg-BgIcon cursor-pointer duration-300 ">
+            Unread
+          </div>
+        </div>
+        {/* ---------See all---------------- */}
+        <div className="flex justify-between items-center">
+          <div className="text-4 font-medium">New</div>
+          <div className="text-Link text-4 hover:bg-BgIcon rounded-lg p-2 cursor-pointer duration-300">
+            See all
+          </div>
+        </div>
+        <ul className="flex flex-col justify-start items-start gap-5 w-[379px] ">
+          {chatItems.map((item, index) => (
+            <div key={index} className="relative group ">
+              <div className="flex justify-start items-start gap-1 hover:bg-BgIcon rounded-lg cursor-pointer duration-300">
+                <img src={item.image} alt="profile" className="w-[56px]" />
+
+                <div className="flex flex-col justify-start items-start p-2">
+                  <div className="font-medium">{item.label}</div>
+                  <div className=" text-TextTitle ">{item.message}</div>
+                  <div className="text-Link">32 minutes ago</div>
+                </div>
+              </div>
+
+              <div className=" absolute hidden group-hover:block top-2.5 right-2 p-[7px] rounded-full cursor-pointer bg-white hover:bg-BgHover border duration-300 ">
+                <img src={dots} alt="search" />
+              </div>
+            </div>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+
   return (
     <>
       <header className="bg-white  flex justify-between items-end shadow-md sticky top-0 w-full  z-40">
-
         {/* ==================logo======================== */}
         <div className="flex justify-center items-center ml-4 gap-2 my-2 cursor-pointer">
           <svg
@@ -76,12 +294,18 @@ const Header = () => {
                 strokeLinecap="round"
               />
             </svg>
-            <span className="hidden lg:block"><input className="bg-transparent focus:outline-none mx-2" type="text" placeholder="Search Facebook" /></span>
+            <span className="hidden lg:block">
+              <input
+                className="bg-transparent focus:outline-none mx-2"
+                type="text"
+                placeholder="Search Facebook"
+              />
+            </span>
           </div>
         </div>
 
         {/* ==================Nav======================== */}
-        <div className=" w-[12%]  md:w-[35%] bg-black mr-10 ">
+        <div className=" w-[12%]  md:w-[35%]  mr-14 ">
           <div className="flex justify-start md:justify-between items-center gap-2 py-1 ">
             <Tooltip
               title="Home"
@@ -103,7 +327,6 @@ const Header = () => {
                     <img
                       src={activeNav === "home" ? homefill : homeline}
                       alt="home"
-                      className="w-8"
                     />
                   </div>
                 </div>
@@ -137,7 +360,6 @@ const Header = () => {
                     <img
                       src={activeNav === "group" ? groupfill : groupline}
                       alt="group"
-                      className="w-8"
                     />
                   </div>
                 </div>
@@ -171,7 +393,6 @@ const Header = () => {
                     <img
                       src={activeNav === "video" ? videofill : videolin}
                       alt="video"
-                      className="w-8"
                     />
                   </div>
                 </div>
@@ -205,7 +426,6 @@ const Header = () => {
                     <img
                       src={activeNav === "marketplace" ? shopfill : shopline}
                       alt="marketplace"
-                      className="w-8"
                     />
                   </div>
                 </div>
@@ -240,7 +460,6 @@ const Header = () => {
                     <img
                       src={activeNav === "user" ? userfill : userline}
                       alt="user"
-                      className="w-8"
                     />
                   </div>
                 </div>
@@ -271,12 +490,12 @@ const Header = () => {
               >
                 <div className=" flex justify-center items-center py-2">
                   <div className={`  rounded-xl cursor-pointer  `}>
-                    <LuMenu className="text-5xl text-TextTitle" />
+                    <LuMenu className="text-4xl text-TextTitle" />
                   </div>
                 </div>
 
                 <div
-                  className={` mb-[-4px] rounded-t-xl transition duration-200 ease-in-out ${
+                  className={` mb-[-9px] rounded-t-xl transition duration-200 ease-in-out ${
                     activeNav === "more"
                       ? "border-b-4 border-Link opacity-100 translate-y-0"
                       : "border-b-4 opacity-0 translate-y-1"
@@ -294,7 +513,7 @@ const Header = () => {
             arrow={false}
             overlayInnerStyle={overlayInnerStyle}
           >
-            <div className="bg-BgIcon p-[11px] rounded-full cursor-pointer hover:bg-BgHover duration-200 ">
+            <div className="bg-BgIcon p-[8px] rounded-full cursor-pointer hover:bg-BgHover duration-200 ">
               <span className="hidden lg:block">
                 <img src={menu} alt="menu" />
               </span>
@@ -303,57 +522,56 @@ const Header = () => {
               </span>
             </div>
           </Tooltip>
-          <Badge count={5} offset={[-9, 3]}>
+          <Badge count={7} offset={[-6, 4]} size="small">
             <Tooltip
               title="Messenger"
               arrow={false}
               overlayInnerStyle={overlayInnerStyle}
             >
-              <div className="bg-BgIcon p-[11px] rounded-full cursor-pointer hover:bg-BgHover duration-200">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clipPath="url(#clip0_1_437)">
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22C10.298 22.0025 8.62369 21.5687 7.13701 20.74L6.83201 20.562L3.80001 21.454C3.63501 21.5026 3.46033 21.5083 3.29252 21.4705C3.12472 21.4327 2.96935 21.3526 2.84115 21.238C2.71294 21.1233 2.61615 20.9778 2.55995 20.8152C2.50375 20.6526 2.49 20.4784 2.52001 20.309L2.54601 20.2L3.43801 17.168C2.49497 15.6093 1.99759 13.8218 2.00001 12C2.00001 6.477 6.47701 2 12 2ZM9.79301 9.793L6.79301 12.793C6.6975 12.8852 6.62132 12.9956 6.56891 13.1176C6.5165 13.2396 6.48891 13.3708 6.48776 13.5036C6.4866 13.6364 6.51191 13.7681 6.56219 13.891C6.61247 14.0139 6.68672 14.1255 6.78061 14.2194C6.87451 14.3133 6.98616 14.3875 7.10905 14.4378C7.23195 14.4881 7.36363 14.5134 7.49641 14.5123C7.62919 14.5111 7.76041 14.4835 7.88241 14.4311C8.00442 14.3787 8.11476 14.3025 8.20701 14.207L10.5 11.914L12.793 14.207C12.9805 14.3945 13.2348 14.4998 13.5 14.4998C13.7652 14.4998 14.0195 14.3945 14.207 14.207L17.207 11.207C17.3892 11.0184 17.49 10.7658 17.4877 10.5036C17.4854 10.2414 17.3802 9.99059 17.1948 9.80518C17.0094 9.61977 16.7586 9.5146 16.4964 9.51233C16.2342 9.51005 15.9816 9.61084 15.793 9.793L13.5 12.086L11.207 9.793C11.0195 9.60553 10.7652 9.50021 10.5 9.50021C10.2348 9.50021 9.98054 9.60553 9.79301 9.793Z"
-                      fill="black"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_1_437">
-                      <rect width="24" height="24" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </div>
+              <Dropdown
+                menu={{
+                  chatItems,
+                }}
+                trigger={["click"]}
+                placement="bottom"
+                overlayStyle={{ position: "fixed", width: "max-content" }}
+                dropdownRender={renderDropdownChat}
+                onOpenChange={handleVisibleChange}
+              >
+                <div className="bg-BgIcon p-[8px] rounded-full cursor-pointer hover:bg-BgHover duration-200">
+                  {visible ? (
+                    <img src={chatblack} alt="chatblack" />
+                  ) : (
+                    <img src={chatlink} alt="chatwhite" />
+                  )}
+                </div>
+              </Dropdown>
             </Tooltip>
           </Badge>
-          <Badge count={5} offset={[-9, 3]}>
+          <Badge count={5} offset={[-6, 4]} size="small">
             <Tooltip
               title="Notifications"
               arrow={false}
               overlayInnerStyle={overlayInnerStyle}
             >
-              <div className="bg-BgIcon p-[11px] rounded-full cursor-pointer hover:bg-BgHover duration-200">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M20.6288 15.9989C20.551 15.9052 20.4745 15.8114 20.3995 15.7209C19.3683 14.4736 18.7444 13.7208 18.7444 10.1897C18.7444 8.36156 18.307 6.86156 17.445 5.73656C16.8094 4.90547 15.9502 4.275 14.8177 3.80906C14.8031 3.80096 14.7901 3.79032 14.7792 3.77766C14.3719 2.41359 13.2572 1.5 12 1.5C10.7428 1.5 9.62861 2.41359 9.22127 3.77625C9.2104 3.78845 9.19756 3.79875 9.1833 3.80672C6.54049 4.89469 5.25611 6.98203 5.25611 10.1883C5.25611 13.7208 4.63314 14.4736 3.60095 15.7195C3.52595 15.81 3.44955 15.9019 3.37174 15.9975C3.17074 16.2399 3.04339 16.5348 3.00476 16.8473C2.96613 17.1598 3.01784 17.4769 3.15377 17.7609C3.44299 18.3703 4.05939 18.7486 4.76299 18.7486H19.2422C19.9425 18.7486 20.5547 18.3708 20.8449 17.7642C20.9814 17.4801 21.0336 17.1628 20.9953 16.8499C20.957 16.537 20.8298 16.2417 20.6288 15.9989ZM12 22.5C12.6774 22.4995 13.342 22.3156 13.9233 21.9679C14.5046 21.6202 14.981 21.1217 15.3019 20.5252C15.317 20.4966 15.3245 20.4646 15.3236 20.4322C15.3227 20.3999 15.3134 20.3684 15.2967 20.3407C15.28 20.313 15.2564 20.2901 15.2283 20.2742C15.2001 20.2583 15.1683 20.25 15.136 20.25H8.86502C8.83264 20.2499 8.80078 20.2582 8.77255 20.274C8.74432 20.2899 8.72067 20.3128 8.70392 20.3405C8.68716 20.3682 8.67787 20.3997 8.67694 20.4321C8.67601 20.4645 8.68347 20.4965 8.69861 20.5252C9.01949 21.1216 9.49579 21.6201 10.077 21.9678C10.6582 22.3155 11.3227 22.4994 12 22.5Z"
-                    fill="black"
-                  />
-                </svg>
-              </div>
+              <Dropdown
+                menu={{
+                  chatItems,
+                }}
+                trigger={["click"]}
+                placement="bottom"
+                overlayStyle={{ position: "fixed", width: "max-content" }}
+                dropdownRender={renderDropdownNotification}
+                onOpenChange={handleVisibleChangeNoti}
+              >
+                <div className="bg-BgIcon p-[8px] rounded-full cursor-pointer hover:bg-BgHover duration-200">
+                  {visibleNoti ? (
+                    <img src={notificationLink} alt="chatblack" />
+                  ) : (
+                    <img src={notification} alt="chatwhite" />
+                  )}
+                </div>
+              </Dropdown>
             </Tooltip>
           </Badge>
 
@@ -363,7 +581,7 @@ const Header = () => {
             overlayInnerStyle={overlayInnerStyle}
           >
             <div className="bg-BgIcon  rounded-full cursor-pointer hover:bg-BgHover duration-200">
-              <img src={profile} alt="profile" className="w-[45px]" />
+              <img src={profile} alt="profile" className="w-[40px]" />
             </div>
           </Tooltip>
         </div>

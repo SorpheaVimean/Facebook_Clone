@@ -17,6 +17,29 @@
 /* .my-container {
     @apply w-auto mx-5 md:mx-16 lg:mx-40;
   } */
-  .tooltip-with-margin .ant-tooltip-inner {
-    margin-top: 10px;
-  }
+
+.tooltip-with-margin .ant-tooltip-inner {
+  margin-top: 10px;
+  border-radius: 20px;
+}
+/* CustomScrollbar.css */
+.hidden-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.hidden-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+
+.hidden-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #F2F2F2; /* Change this to your desired scrollbar thumb color */
+  border-radius: 10px;
+  transition: 10s ease-in-out;
+
+}
+
+.hidden-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1; /* Change this to your desired scrollbar thumb color on hover */
+}

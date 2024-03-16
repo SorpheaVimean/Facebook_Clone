@@ -19,6 +19,8 @@ import cross from "../../assets/icons/radix-icons_cross-2.svg";
 import like from "../../assets/icons/bx_like.svg";
 import commment from "../../assets/icons/iconamoon_comment-light.svg";
 import share from "../../assets/icons/uil_share.svg";
+import likes from "../../assets/icons/bxs_like.svg";
+import love from "../../assets/icons/mdi_heart.svg";
 import profile from "../../assets/iconLeftSide/Frame 9.png";
 
 // left side
@@ -32,10 +34,22 @@ import itMedia from "../../assets/iconLeftSide/Rectangle 3.png";
 import itTech from "../../assets/iconLeftSide/Rectangle 4.png";
 import itShare from "../../assets/iconLeftSide/Rectangle 5.png";
 import itCam from "../../assets/iconLeftSide/Rectangle 6.png";
+import messager from "../../assets/iconLeftSide/messager.jpg";
+import gaming from "../../assets/iconLeftSide/gaming.png";
 
 // Center post
 import ac from "../../assets/postimage/Ellipse 6.png";
 import postac from "../../assets/postimage/image 1.png";
+import decathlon from "../../assets/postimage/Ellipse 8.png";
+import blur from "../../assets/postimage/Rectangle 9.png";
+import stand from "../../assets/postimage/Rectangle 10.png";
+import full from "../../assets/postimage/Rectangle 11.png";
+import behind from "../../assets/postimage/Rectangle 12.png";
+import metlogo from "../../assets/postimage/Ellipse 6-1.png";
+import met1 from "../../assets/postimage/Rectangle 13.png";
+import met2 from "../../assets/postimage/Rectangle 14.png";
+import met3 from "../../assets/postimage/Rectangle 15.png";
+import met4 from "../../assets/postimage/Rectangle 16.png";
 
 // Right side
 import marvin from "../../assets/profileRightSide/Ellipse 1.png";
@@ -46,7 +60,7 @@ import ral from "../../assets/profileRightSide/Ellipse 1.png";
 import jenny from "../../assets/profileRightSide/Ellipse 6.png";
 
 import { useState } from "react";
-import { Divider, Tooltip } from "antd";
+import { Avatar, Divider, Tooltip } from "antd";
 const HomePage = () => {
   const [showAll, setShowAll] = useState(false);
   const [seeall, setSeeAll] = useState(false);
@@ -84,6 +98,26 @@ const HomePage = () => {
     },
     {
       id: 7,
+      name: "Feed",
+      logo: memories,
+    },
+    {
+      id: 8,
+      name: "Messager",
+      logo: messager,
+    },
+    {
+      id: 9,
+      name: "Gaming",
+      logo: gaming,
+    },
+    {
+      id: 10,
+      name: "add manager",
+      logo: video,
+    },
+    {
+      id: 11,
       name: "Feed",
       logo: memories,
     },
@@ -183,6 +217,26 @@ const HomePage = () => {
       name: "Jenny Wilson",
       logo: jenny,
     },
+    {
+      id: 5,
+      name: "Robert Fox",
+      logo: marvin,
+    },
+    {
+      id: 6,
+      name: "Cody Fisher",
+      logo: cour,
+    },
+    {
+      id: 7,
+      name: "Darrell Steward",
+      logo: alber,
+    },
+    {
+      id: 8,
+      name: "Jenny Wilson",
+      logo: jenny,
+    },
   ];
 
   const toggleShowAll = () => {
@@ -195,7 +249,7 @@ const HomePage = () => {
     <>
       <div className="flex justify-center  md:justify-between items-start mt-5 mx-4  ">
         {/* ==================Left Side======================== */}
-        <div className="hidden lg:block h-[100vh] sticky top-0 bg-black ">
+        <div className="hidden lg:block max-h-[870px] sticky top-[80px] overflow-y-scroll hidden-scrollbar">
           {/* ----------Infor---------- */}
           <div className="flex flex-col justify-start items-start gap-1 ">
             {info.slice(0, showAll ? info.length : 6).map((infoItem) => (
@@ -203,7 +257,7 @@ const HomePage = () => {
                 key={infoItem.id}
                 className="w-[318px] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
               >
-                <img src={infoItem.logo} alt="" />
+                <img src={infoItem.logo} alt="" className="w-[30px]" />
                 <div className="font-bold">{infoItem.name}</div>
               </div>
             ))}
@@ -290,8 +344,8 @@ const HomePage = () => {
 
         {/* ==================middle======================== */}
         <div className=" lg:w-[36%] min-w-[483px] md:w-[642px]  ">
-          <div className="  ">
-            <div className="w-full mb-4 ">
+          <div className=" space-y-4 ">
+            <div className="w-full  ">
               <Swiper
                 slidesPerView={4}
                 className="flex justify-center items-center gap-5"
@@ -422,7 +476,7 @@ const HomePage = () => {
             </div>
 
             {/* ------------------post----------------------- */}
-            <div className="bg-white  rounded-xl mb-4">
+            <div className="bg-white  rounded-xl  border">
               <div className="mx-4 ">
                 <div className="flex justify-center items-center gap-2 pt-4">
                   <img src={profile} alt="" className="w-[40px]" />
@@ -430,7 +484,7 @@ const HomePage = () => {
                     What's on your mind, TITB Group?
                   </div>
                 </div>
-                <Divider className="border-[0.5] border-slate-300 mt-4" />
+                <Divider className="border-[0.5] border-slate-300 mt-4 " />
                 <div className="flex justify-around items-center gap-2 ">
                   <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 my-2 rounded-xl duration-300">
                     <img src={camera} alt="camer" />
@@ -451,14 +505,16 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-white  rounded-xl">
+
+            {/* ------------------ACELDA-------------------- */}
+            <div className="bg-white  rounded-xl  border">
               {/*------ Headed post ------ */}
               <div className="flex justify-between items-center p-3">
                 <div className="flex justify-start items-start gap-2">
                   <img src={ac} alt="" />
 
                   <div className="">
-                    <div className="cursor-pointer hover:underline">
+                    <div className="cursor-pointer hover:underline font-medium text-[16px]">
                       ACLEDA Bank Plc.
                     </div>
                     <div className="flex justify-start items-start">
@@ -481,7 +537,7 @@ const HomePage = () => {
               </div>
 
               {/*------ Descriptions ------ */}
-              <div className="p-3">
+              <div className="p-3 ">
                 ជម្រាបជូនអតិថិជនជាទីគោរព ថ្មីៗនេះមានការផ្ញើសារក្លែងបន្លំ
                 ទៅក្នុងទូរសព្ទ (SMS) ឬអុីម៉ែល
                 ដើម្បីប៉ុនប៉ងចូលយកព័ត៌មានគណនីរបស់លោកអ្នក។ ដូច្នេះប្រសិនបើលោកអ្នក
@@ -495,11 +551,28 @@ const HomePage = () => {
               </div>
 
               {/*------ image ------ */}
-              <img src={postac} alt="" className=" w-full" />
-
-              {/*------ like section ------ */}
-              <div className="flex justify-between items-center m-4">
-                <div className=""></div>
+              <div className="">
+                <img src={postac} alt="" className=" w-full" />
+              </div>
+                <div className=" mx-4">
+                   {/*------ like section ------ */}
+              <div className="flex justify-between items-center my-4">
+                <div className="flex justify-center items-center gap-2">
+                  <Avatar.Group size={"small"}>
+                    <Avatar className="bg-Link border z-10">
+                      <img src={likes} alt="" />
+                    </Avatar>
+                    <Avatar
+                      maxPopoverPlacement="top"
+                      className="bg-red-500 border"
+                    >
+                      <img src={love} alt="" />
+                    </Avatar>
+                  </Avatar.Group>
+                  <div className="text-TextTitle cursor-pointer hover:underline">
+                    2.1k
+                  </div>
+                </div>
                 <div className="flex justify-center items-center gap-2">
                   <div className="text-TextTitle cursor-pointer hover:underline duration-300">
                     144 comments{" "}
@@ -512,7 +585,7 @@ const HomePage = () => {
               </div>
               <Divider className="border-[0.5] border-slate-300 my-4" />
               {/*------ like botton ------ */}
-              <div className="flex justify-around items-center mx-3">
+              <div className="flex justify-around items-center gap-2 my-1">
                 <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
                   <img src={like} alt="camer" />
                   <div className="text-TextTitle font-semibold">Like</div>
@@ -525,16 +598,238 @@ const HomePage = () => {
                 </div>
                 <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
                   <img src={share} alt="camer" />
-                  <div className="text-TextTitle font-semibold">Live Share</div>
+                  <div className="text-TextTitle font-semibold"> Share</div>
                 </div>
-                <img src={profile} alt="profile" className="w-6" />
+                <img src={profile} alt="profile" className="w-[24px]" />
               </div>
+                </div>
+             
+            </div>
+
+            {/* ------------------Decathlon-------------------- */}
+            <div className="bg-white  rounded-xl   border">
+              {/*------ Headed post ------ */}
+              <div className="flex justify-between items-center p-3">
+                <div className="flex justify-start items-start gap-2">
+                  <img src={decathlon} alt="" />
+
+                  <div className="">
+                    <div className="cursor-pointer hover:underline font-medium text-[16px]">
+                      Decathlon Cambodia
+                    </div>
+                    <div className="flex justify-start items-start">
+                      <div className="text-sm cursor-pointer hover:underline">
+                        3d .
+                      </div>
+                      <img src={globe} alt="" className="w-5" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-center items-center gap-2">
+                  <div className=" p-[7px] rounded-full cursor-pointer hover:bg-BgIcon duration-200 ">
+                    <img src={dots} alt="option" />
+                  </div>
+                  <div className=" p-[7px] rounded-full cursor-pointer hover:bg-BgIcon duration-200 ">
+                    <img src={cross} alt="option" />
+                  </div>
+                </div>
+              </div>
+
+              {/*------ Descriptions ------ */}
+              <div className="p-3 ">
+                <p>
+                  កំពុងតែស្វែងរកស្បែកជើងរត់ដែលមានគុណភាពល្អនិងមានការផ្តល់ជូននៅការធានាម៉ែនទេ?
+                  នៅ Decathlon
+                  យើងមានជម្រើសស្បែកជើងកីឡាជាច្រើនសម្រាប់បងប្អូនជ្រើសរើស។
+                  ជាពិេសេសគឺមានការផ្តល់ជូនការធានាទៅលើកាវ (របក​ឬរបើកកាវ)
+                  និងថ្នេរទៀតផងសម្រាប់ស្បែកជើងរត់។
+                </p>
+                <p>Ref: 8558959 </p>
+                <p className="text-Link space-x-2">
+                  <span className="hover:underline cursor-pointer duration-300">
+                    #decathloncambodia{" "}
+                  </span>
+                  <span className="hover:underline cursor-pointer duration-300">
+                    {" "}
+                    #runningshoes{" "}
+                  </span>
+                  <span className="hover:underline cursor-pointer duration-300">
+                    {" "}
+                    #warranty{" "}
+                  </span>
+                </p>
+              </div>
+
+              {/*------ image ------ */}
+              <div className="grid grid-cols-2 gap-1 ">
+                <img src={blur} alt="" className=" w-full row-span-3" />
+                <img src={stand} alt="" className=" w-full" />
+                <img src={full} alt="" className=" w-full" />
+                <img src={behind} alt="" className=" w-full" />
+              </div>
+                  <div className="mx-4">
+                       {/*------ like section ------ */}
+              <div className="flex justify-between items-center my-4">
+                <div className="flex justify-center items-center gap-2">
+                  <Avatar.Group size={"small"}>
+                    <Avatar className="bg-Link border z-10">
+                      <img src={likes} alt="" />
+                    </Avatar>
+                    <Avatar
+                      maxPopoverPlacement="top"
+                      className="bg-red-500 border"
+                    >
+                      <img src={love} alt="" />
+                    </Avatar>
+                  </Avatar.Group>
+                  <div className="text-TextTitle cursor-pointer hover:underline">
+                    182
+                  </div>
+                </div>
+                <div className="flex justify-center items-center gap-2">
+                  <div className="text-TextTitle cursor-pointer hover:underline duration-300">
+                    27 comments{" "}
+                  </div>
+                  <div className="text-TextTitle cursor-pointer hover:underline duration-300">
+                    {" "}
+                    19 shares
+                  </div>
+                </div>
+              </div>
+              <Divider className="border-[0.5] border-slate-300 my-4" />
+              {/*------ like botton ------ */}
+              <div className="flex justify-around items-center gap-2 my-1">
+                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                  <img src={like} alt="camer" />
+                  <div className="text-TextTitle font-semibold">Like</div>
+                </div>
+                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                  <img src={commment} alt="camer" />
+                  <div className="text-TextTitle font-semibold">
+                    Live comment
+                  </div>
+                </div>
+                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                  <img src={share} alt="camer" />
+                  <div className="text-TextTitle font-semibold"> Share</div>
+                </div>
+                <img src={profile} alt="profile" className="w-[24px]" />
+              </div>
+                  </div>
+           
+            </div>
+
+            {/* ------------------Metfone-------------------- */}
+            <div className="bg-white  rounded-xl   border">
+              {/*------ Headed post ------ */}
+              <div className="flex justify-between items-center p-3">
+                <div className="flex justify-start items-start gap-2">
+                  <img src={metlogo} alt="" />
+
+                  <div className="">
+                    <div className="cursor-pointer hover:underline font-medium text-[16px]">
+                      Metfone
+                    </div>
+                    <div className="flex justify-start items-start">
+                      <div className="text-sm cursor-pointer hover:underline">
+                        Sponsored .
+                      </div>
+                      <img src={globe} alt="" className="w-5" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-center items-center gap-2">
+                  <div className=" p-[7px] rounded-full cursor-pointer hover:bg-BgIcon duration-200 ">
+                    <img src={dots} alt="option" />
+                  </div>
+                  <div className=" p-[7px] rounded-full cursor-pointer hover:bg-BgIcon duration-200 ">
+                    <img src={cross} alt="option" />
+                  </div>
+                </div>
+              </div>
+
+              {/*------ Descriptions ------ */}
+              <div className="p-3 ">
+                <p>
+                  ថ្ងៃមុនហ្វេនៗបានដឹងពីរបៀបសន្សំសំចៃទិន្នន័យអ៉ីនធឺណិត
+                  នៅលើប្រព័ន្ធប្រតិបត្តិ Android ហើយៗ ដូច្នេះថ្ងៃនេះ
+                  អេតមីនសូមបង្ហាញពីរបៀបសន្សំសំចៃទិន្នន័យអ៉ីនធឺណិត
+                  សម្រាប់កម្មវិធីមួយចំនួននៅលើប្រព័ន្ធប្រតិបត្តិ IOS វិញម្តង!
+                  តស់! អនុវត្តន៍ជាមួយអេតមីនទាំងអស់គ្នាណា៎!
+                </p>
+                <p>Ref: 8558959 </p>
+                <p className="text-Link space-x-2">
+                  <span className="hover:underline cursor-pointer duration-300">
+                    #Metfone
+                  </span>
+                </p>
+              </div>
+
+              {/*------ image ------ */}
+              <div className="grid grid-cols-2 gap-1 ">
+                <img src={met1} alt="" className=" w-full " />
+                <img src={met2} alt="" className=" w-full" />
+                <img src={met3} alt="" className=" w-full" />
+                <img src={met4} alt="" className=" w-full" />
+              </div>
+                  <div className="mx-4">
+  {/*------ like section ------ */}
+              <div className="flex justify-between items-center my-4">
+                <div className="flex justify-center items-center gap-2">
+                  <Avatar.Group size={"small"}>
+                    <Avatar className="bg-Link border z-10">
+                      <img src={likes} alt="" />
+                    </Avatar>
+                    <Avatar
+                      maxPopoverPlacement="top"
+                      className="bg-red-500 border"
+                    >
+                      <img src={love} alt="" />
+                    </Avatar>
+                  </Avatar.Group>
+                  <div className="text-TextTitle cursor-pointer hover:underline">
+                    3.6k
+                  </div>
+                </div>
+                <div className="flex justify-center items-center gap-2">
+                  <div className="text-TextTitle cursor-pointer hover:underline duration-300">
+                    44 comments{" "}
+                  </div>
+                  <div className="text-TextTitle cursor-pointer hover:underline duration-300">
+                    {" "}
+                    91 shares
+                  </div>
+                </div>
+              </div>
+              <Divider className="border-[0.5] border-slate-300 my-4" />
+              {/*------ like botton ------ */}
+              <div className="flex justify-around items-center gap-2 my-1">
+                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                  <img src={like} alt="camer" />
+                  <div className="text-TextTitle font-semibold">Like</div>
+                </div>
+                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                  <img src={commment} alt="camer" />
+                  <div className="text-TextTitle font-semibold">
+                    Live comment
+                  </div>
+                </div>
+                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                  <img src={share} alt="camer" />
+                  <div className="text-TextTitle font-semibold"> Share</div>
+                </div>
+                <img src={profile} alt="profile" className="w-[24px]" />
+              </div>
+                  </div>
+            
             </div>
           </div>
         </div>
 
         {/* ==================Right Side======================== */}
-        <div className="z-20 hidden md:block w-[300px]">
+        <div className="z-20 hidden md:block w-[318px] max-h-[870px] sticky top-[80px] overflow-y-scroll hidden-scrollbar">
           <div className="group">
             <div className="flex justify-between items-center mb-2">
               <div className="text-TextTitle font-semibold ">
@@ -545,24 +840,24 @@ const HomePage = () => {
               </div>
             </div>
             <div className="flex flex-col justify-start items-start  ">
-              <div className="w-[318px] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer">
+              <div className=" w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer">
                 <img src={profile} alt="" />
-                <div className="font-bold">Switch to Page</div>
+                <div className="font-bold">TITB Group</div>
               </div>
-              <div className="w-[318px] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer">
+              <div className="w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer">
                 <img src={announce} alt="" />
                 <div className="font-bold">Create promotion</div>
               </div>
-              <div className="w-[318px] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer">
+              <div className="w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer">
                 <img src={create} alt="" />
                 <div className="font-bold">TITB Group</div>
               </div>
             </div>
           </div>
-          <Divider className="border-[0.5] border-slate-300 my-1" />
-          <div className="group">
+          <Divider className="border-[0.5] border-slate-300 my-4" />
+          <div className="group ">
             <div className="flex justify-between items-center mb-2">
-              <div className="text-TextTitle font-semibold">Contact </div>
+              <div className="text-TextTitle font-semibold">Contacts </div>
               <div className="flex justify-center items-center gap-4">
                 <Tooltip
                   title="Search by name or group"
@@ -584,7 +879,7 @@ const HomePage = () => {
               {contacts.map((infoItem) => (
                 <div
                   key={infoItem.id}
-                  className="w-[318px] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
+                  className="w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
                 >
                   <div className="relative">
                     <img src={infoItem.logo} alt="" />
@@ -596,21 +891,19 @@ const HomePage = () => {
               ))}
             </div>
           </div>
-          <Divider className="border-[0.5] border-slate-300 my-1" />
-          <div className="group">
+          <Divider className="border-[0.5] border-slate-300 my-4" />
+          <div className="group mt-4">
             <div className="text-TextTitle font-semibold">Conversations </div>
 
             <div className="flex flex-col justify-start items-start  ">
-              {conversation
-                .slice(0, seeall ? info.length : 5)
-                .map((infoItem) => (
+              {conversation.map((infoItem) => (
                   <div
                     key={infoItem.id}
-                    className="w-[318px] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
+                    className=" w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
                   >
                     <div className="relative">
                       <img src={infoItem.logo} alt="" />
-                      <div className=" absolute bottom-0 right-0 bg-green-500 w-[8px] h-[8px] rounded-full"></div>
+                      <div className=" absolute bottom-1 right-0 border bg-green-500 w-[8px] h-[8px] rounded-full"></div>
                     </div>
                     <div className="font-bold">{infoItem.name}</div>
                   </div>
