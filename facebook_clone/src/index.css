@@ -6,17 +6,20 @@
 
 #root {
   font-family: "Inter", sans-serif;
-  /* max-width: none; 
-    margin-left: auto; 
-    margin-right: auto; 
-    padding: 0; */
-  background-color: #f2f2f2;
-  /* color: white; */
-  /* text-align: left; */
+
+  background-color: #F2F2F2;
+
 }
-/* .my-container {
-    @apply w-auto mx-5 md:mx-16 lg:mx-40;
-  } */
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 24px;
+  background-color: white;
+  color: black;
+  padding: 15px 20px;
+  border-radius: 100%;
+  margin: 20px 10px;
+}
 
 .tooltip-with-margin .ant-tooltip-inner {
   margin-top: 10px;
@@ -32,14 +35,12 @@
   border-radius: 10px;
 }
 
-
 .hidden-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #F2F2F2; /* Change this to your desired scrollbar thumb color */
+  background-color: #f2f2f2; /* Change this to your desired scrollbar thumb color */
   border-radius: 10px;
   transition: 10s ease-in-out;
-
 }
 
 .hidden-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: #CBD5E1; /* Change this to your desired scrollbar thumb color on hover */
+  background-color: #cbd5e1; /* Change this to your desired scrollbar thumb color on hover */
 }

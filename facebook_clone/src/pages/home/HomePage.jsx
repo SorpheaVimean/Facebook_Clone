@@ -1,6 +1,7 @@
 // import React from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
+import { Navigation } from "swiper/modules";
 
 import myprofile from "../../assets/image/Rectangle 7.png";
 import bgswip from "../../assets/image/Frame 39.png";
@@ -50,6 +51,8 @@ import met1 from "../../assets/postimage/Rectangle 13.png";
 import met2 from "../../assets/postimage/Rectangle 14.png";
 import met3 from "../../assets/postimage/Rectangle 15.png";
 import met4 from "../../assets/postimage/Rectangle 16.png";
+import stor1 from "../../assets/postimage/Frame 42.png";
+import stor2 from "../../assets/postimage/Frame 43.png";
 
 // Right side
 import marvin from "../../assets/profileRightSide/Ellipse 1.png";
@@ -60,10 +63,20 @@ import ral from "../../assets/profileRightSide/Ellipse 1.png";
 import jenny from "../../assets/profileRightSide/Ellipse 6.png";
 
 import { useState } from "react";
-import { Avatar, Divider, Tooltip } from "antd";
+import { Avatar, Divider, Tooltip, Modal } from "antd";
 const HomePage = () => {
   const [showAll, setShowAll] = useState(false);
   const [seeall, setSeeAll] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const info = [
     {
@@ -238,13 +251,51 @@ const HomePage = () => {
       logo: jenny,
     },
   ];
-
+  const story = [
+    {
+      id: 1,
+      name: "Kristin Watson",
+      profile: marvin,
+      story: bgswip,
+    },
+    {
+      id: 2,
+      name: "Jenny Wilson",
+      profile: jenny,
+      story: stor1,
+    },
+    {
+      id: 3,
+      name: "Savannah Nguyen",
+      profile: cour,
+      story: stor2,
+    },
+    {
+      id: 4,
+      name: "Cody Fisher",
+      profile: cour,
+      story: stor1,
+    },
+    {
+      id: 5,
+      name: "Darrell Steward",
+      profile: cour,
+      story: bgswip,
+    },
+    {
+      id: 6,
+      name: "Jenny Wilson",
+      profile: cour,
+      story: stor2,
+    },
+  ];
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
   const toggleSeeAll = () => {
     setSeeAll(!seeall);
   };
+
   return (
     <>
       <div className="flex justify-center  md:justify-between items-start mt-5 mx-4  ">
@@ -317,38 +368,87 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="flex justify-start items-center mt-2">
+          <div className="flex flex-wrap justify-start items-center mt-2">
             <div className="text-TextTitle text-[10px] hover:underline cursor-pointer">
-              Privacy .
+              <a
+                target="_blank"
+                href="https://free.facebook.com/privacy/policy/#"
+                rel="noreferrer"
+              >
+                Privacy .
+              </a>
             </div>
-            <div className="text-TextTitle text-[10px] hover:underline cursor-pointer">
-              Teams .
+            <div className="text-TextTitle text-[12px] hover:underline cursor-pointer">
+              <a
+                target="_blank"
+                href="https://web.facebook.com/policies_center/"
+                rel="noreferrer"
+              >
+                {" "}
+                Teams .
+              </a>
             </div>
-            <div className="text-TextTitle text-[10px] hover:underline cursor-pointer">
-              Advertising .
+            <div className="text-TextTitle text-[12px] hover:underline cursor-pointer">
+              <a
+                target="_blank"
+                href="https://web.facebook.com/business"
+                rel="noreferrer"
+              >
+                {" "}
+                Advertising .
+              </a>{" "}
             </div>
-            <div className="text-TextTitle text-[10px] hover:underline cursor-pointer">
-              Ad Choices .
+            <div className="text-TextTitle text-[12px] hover:underline cursor-pointer">
+              <a
+                target="_blank"
+                href="https://web.facebook.com/help/568137493302217"
+                rel="noreferrer"
+              >
+                {" "}
+                Ad Choices .
+              </a>
             </div>
-            <div className="text-TextTitle text-[10px] hover:underline cursor-pointer">
-              Cookies .
+            <div className="text-TextTitle text-[12px] hover:underline cursor-pointer">
+              <a
+                target="_blank"
+                href=" https://web.facebook.com/privacy/policies/cookies/?entry_point=cookie_policy_redirect&entry=0"
+                rel="noreferrer"
+              >
+                {" "}
+                Cookies .
+              </a>
             </div>
-            <div className="text-TextTitle text-[10px]  cursor-pointer">
+            <div className="text-TextTitle text-[12px]  cursor-pointer">
               More .
             </div>
-            <div className="text-TextTitle text-[10px] hover:underline cursor-pointer">
-              Meta © 2024
-            </div>
+            <div className="text-TextTitle text-[12px]  ">Meta © 2024</div>
           </div>
         </div>
 
         {/* ==================middle======================== */}
-        <div className=" lg:w-[36%] min-w-[483px] md:w-[642px]  ">
+        <div className=" lg:w-[36%] min-w-[483px] md:w-[642px] overflow-hidden ">
           <div className=" space-y-4 ">
             <div className="w-full  ">
               <Swiper
-                slidesPerView={4}
-                className="flex justify-center items-center gap-5"
+                modules={[Navigation]}
+                navigation={{
+                  prevEl: ".swiper-button-prev",
+                  nextEl: ".swiper-button-next",
+                }}
+                slidesPerView={3}
+                spaceBetween={5}
+                className=" mySwiper2 md:w-[600px] lg:w-[642px]"
+                breakpoints={{
+                  640: {
+                    slidesPerView: 3, // Adjust slidesPerView for smaller screens
+                  },
+                  768: {
+                    slidesPerView: 4,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                  },
+                }}
               >
                 <SwiperSlide className="flex flex-col group  ">
                   <div className="w-[140px] h-[250px] bg-white hover:bg-BgIcon felx flex-col justify-center items-center group rounded-xl cursor-pointer overflow-hidden">
@@ -379,104 +479,39 @@ const HomePage = () => {
                     <div className="text-center py-3">Create Story</div>
                   </div>
                 </SwiperSlide>
+                {story.map((items, index) => (
+                  <SwiperSlide key={index} className="flex flex-col group  ">
+                    <div className="relative w-[140px] h-[250px] rounded-xl overflow-hidden cursor-pointer group">
+                      <div className="bg-black">
+                        <img
+                          src={items.story}
+                          alt=""
+                          className="object-cover h-full opacity-80 group-hover:scale-105 group-hover:opacity-65 duration-300"
+                        />
+                        <div className="absolute top-3 left-3 flex w-12">
+                          <div className="border-2 rounded-full border-Link flex justify-center items-center cursor-pointer">
+                            <img
+                              src={items.profile}
+                              alt=""
+                              className="object-cover h-full"
+                            />
+                          </div>
+                        </div>
+                        <div className="absolute bottom-2 left-2 text-white text-[12px]">
+                          {items.name}
+                        </div>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
 
-                <SwiperSlide className="flex flex-col group  ">
-                  <div className="relative w-[140px] h-[250px] rounded-xl overflow-hidden cursor-pointer group">
-                    <div className="bg-black">
-                      <img
-                        src={bgswip}
-                        alt=""
-                        className="object-cover h-full opacity-80 group-hover:scale-105 group-hover:opacity-65 duration-300"
-                      />
-                      <div className="absolute top-3 left-3 flex w-12">
-                        <div className="border-2 rounded-full border-Link flex justify-center items-center cursor-pointer">
-                          <img
-                            src={user}
-                            alt=""
-                            className="object-cover h-full"
-                          />
-                        </div>
-                      </div>
-                      <div className="absolute bottom-2 left-2 text-white text-[12px]">
-                        Savannah nguyen
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="flex flex-col group  ">
-                  <div className="relative w-[140px] h-[250px] rounded-xl overflow-hidden cursor-pointer group">
-                    <div className="bg-black">
-                      <img
-                        src={bgswip}
-                        alt=""
-                        className="object-cover h-full opacity-80 group-hover:scale-105 group-hover:opacity-65 duration-300"
-                      />
-                      <div className="absolute top-3 left-3 flex w-12">
-                        <div className="border-2 rounded-full border-Link flex justify-center items-center cursor-pointer">
-                          <img
-                            src={user}
-                            alt=""
-                            className="object-cover h-full"
-                          />
-                        </div>
-                      </div>
-                      <div className="absolute bottom-2 left-2 text-white text-[12px]">
-                        Savannah nguyen
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="flex flex-col group  ">
-                  <div className="relative w-[140px] h-[250px] rounded-xl overflow-hidden cursor-pointer group">
-                    <div className="bg-black">
-                      <img
-                        src={bgswip}
-                        alt=""
-                        className="object-cover h-full opacity-80 group-hover:scale-105 group-hover:opacity-65 duration-300"
-                      />
-                      <div className="absolute top-3 left-3 flex w-12">
-                        <div className="border-2 rounded-full border-Link flex justify-center items-center cursor-pointer">
-                          <img
-                            src={user}
-                            alt=""
-                            className="object-cover h-full"
-                          />
-                        </div>
-                      </div>
-                      <div className="absolute bottom-2 left-2 text-white text-[12px]">
-                        Savannah nguyen
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="flex flex-col group  ">
-                  <div className="relative w-[140px] h-[250px] rounded-xl overflow-hidden cursor-pointer group">
-                    <div className="bg-black">
-                      <img
-                        src={bgswip}
-                        alt=""
-                        className="object-cover h-full opacity-80 group-hover:scale-105 group-hover:opacity-65 duration-300"
-                      />
-                      <div className="absolute top-3 left-3 flex w-12">
-                        <div className="border-2 rounded-full border-Link flex justify-center items-center cursor-pointer">
-                          <img
-                            src={user}
-                            alt=""
-                            className="object-cover h-full"
-                          />
-                        </div>
-                      </div>
-                      <div className="absolute bottom-2 left-2 text-white text-[12px]">
-                        Savannah nguyen
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
+                <div className="swiper-button-prev text-TextTitle  ml-5 "></div>
+                <div className="swiper-button-next mr-5"></div>
               </Swiper>
             </div>
 
             {/* ------------------post----------------------- */}
-            <div className="bg-white  rounded-xl  border">
+            <div onClick={showModal} className="bg-white  rounded-xl  border">
               <div className="mx-4 ">
                 <div className="flex justify-center items-center gap-2 pt-4">
                   <img src={profile} alt="" className="w-[40px]" />
@@ -488,7 +523,9 @@ const HomePage = () => {
                 <div className="flex justify-around items-center gap-2 ">
                   <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 my-2 rounded-xl duration-300">
                     <img src={camera} alt="camer" />
-                    <div className="text-TextTitle font-semibold">Live</div>
+                    <div className="text-TextTitle font-semibold">
+                      Live video
+                    </div>
                   </div>
                   <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
                     <img src={photo} alt="camer" />
@@ -505,6 +542,19 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
+            {/* --------popup post------------ */}
+            <Modal
+              centered
+              footer={false}
+              title="Crate post"
+              open={isModalOpen}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+            </Modal>
 
             {/* ------------------ACELDA-------------------- */}
             <div className="bg-white  rounded-xl  border">
@@ -554,56 +604,55 @@ const HomePage = () => {
               <div className="">
                 <img src={postac} alt="" className=" w-full" />
               </div>
-                <div className=" mx-4">
-                   {/*------ like section ------ */}
-              <div className="flex justify-between items-center my-4">
-                <div className="flex justify-center items-center gap-2">
-                  <Avatar.Group size={"small"}>
-                    <Avatar className="bg-Link border z-10">
-                      <img src={likes} alt="" />
-                    </Avatar>
-                    <Avatar
-                      maxPopoverPlacement="top"
-                      className="bg-red-500 border"
-                    >
-                      <img src={love} alt="" />
-                    </Avatar>
-                  </Avatar.Group>
-                  <div className="text-TextTitle cursor-pointer hover:underline">
-                    2.1k
+              <div className=" mx-4">
+                {/*------ like section ------ */}
+                <div className="flex justify-between items-center my-4">
+                  <div className="flex justify-center items-center gap-2">
+                    <Avatar.Group size={"small"}>
+                      <Avatar className="bg-Link border z-10">
+                        <img src={likes} alt="" />
+                      </Avatar>
+                      <Avatar
+                        maxPopoverPlacement="top"
+                        className="bg-red-500 border"
+                      >
+                        <img src={love} alt="" />
+                      </Avatar>
+                    </Avatar.Group>
+                    <div className="text-TextTitle cursor-pointer hover:underline">
+                      2.1k
+                    </div>
+                  </div>
+                  <div className="flex justify-center items-center gap-2">
+                    <div className="text-TextTitle cursor-pointer hover:underline duration-300">
+                      144 comments{" "}
+                    </div>
+                    <div className="text-TextTitle cursor-pointer hover:underline duration-300">
+                      {" "}
+                      2.2k shares
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-center items-center gap-2">
-                  <div className="text-TextTitle cursor-pointer hover:underline duration-300">
-                    144 comments{" "}
+                <Divider className="border-[0.5] border-slate-300 my-4" />
+                {/*------ like botton ------ */}
+                <div className="flex justify-around items-center gap-2 my-1">
+                  <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                    <img src={like} alt="camer" />
+                    <div className="text-TextTitle font-semibold">Like</div>
                   </div>
-                  <div className="text-TextTitle cursor-pointer hover:underline duration-300">
-                    {" "}
-                    2.2k shares
+                  <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                    <img src={commment} alt="camer" />
+                    <div className="text-TextTitle font-semibold">
+                      Live comment
+                    </div>
                   </div>
+                  <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                    <img src={share} alt="camer" />
+                    <div className="text-TextTitle font-semibold"> Share</div>
+                  </div>
+                  <img src={profile} alt="profile" className="w-[24px]" />
                 </div>
               </div>
-              <Divider className="border-[0.5] border-slate-300 my-4" />
-              {/*------ like botton ------ */}
-              <div className="flex justify-around items-center gap-2 my-1">
-                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
-                  <img src={like} alt="camer" />
-                  <div className="text-TextTitle font-semibold">Like</div>
-                </div>
-                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
-                  <img src={commment} alt="camer" />
-                  <div className="text-TextTitle font-semibold">
-                    Live comment
-                  </div>
-                </div>
-                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
-                  <img src={share} alt="camer" />
-                  <div className="text-TextTitle font-semibold"> Share</div>
-                </div>
-                <img src={profile} alt="profile" className="w-[24px]" />
-              </div>
-                </div>
-             
             </div>
 
             {/* ------------------Decathlon-------------------- */}
@@ -668,56 +717,55 @@ const HomePage = () => {
                 <img src={full} alt="" className=" w-full" />
                 <img src={behind} alt="" className=" w-full" />
               </div>
-                  <div className="mx-4">
-                       {/*------ like section ------ */}
-              <div className="flex justify-between items-center my-4">
-                <div className="flex justify-center items-center gap-2">
-                  <Avatar.Group size={"small"}>
-                    <Avatar className="bg-Link border z-10">
-                      <img src={likes} alt="" />
-                    </Avatar>
-                    <Avatar
-                      maxPopoverPlacement="top"
-                      className="bg-red-500 border"
-                    >
-                      <img src={love} alt="" />
-                    </Avatar>
-                  </Avatar.Group>
-                  <div className="text-TextTitle cursor-pointer hover:underline">
-                    182
+              <div className="mx-4">
+                {/*------ like section ------ */}
+                <div className="flex justify-between items-center my-4">
+                  <div className="flex justify-center items-center gap-2">
+                    <Avatar.Group size={"small"}>
+                      <Avatar className="bg-Link border z-10">
+                        <img src={likes} alt="" />
+                      </Avatar>
+                      <Avatar
+                        maxPopoverPlacement="top"
+                        className="bg-red-500 border"
+                      >
+                        <img src={love} alt="" />
+                      </Avatar>
+                    </Avatar.Group>
+                    <div className="text-TextTitle cursor-pointer hover:underline">
+                      182
+                    </div>
+                  </div>
+                  <div className="flex justify-center items-center gap-2">
+                    <div className="text-TextTitle cursor-pointer hover:underline duration-300">
+                      27 comments{" "}
+                    </div>
+                    <div className="text-TextTitle cursor-pointer hover:underline duration-300">
+                      {" "}
+                      19 shares
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-center items-center gap-2">
-                  <div className="text-TextTitle cursor-pointer hover:underline duration-300">
-                    27 comments{" "}
+                <Divider className="border-[0.5] border-slate-300 my-4" />
+                {/*------ like botton ------ */}
+                <div className="flex justify-around items-center gap-2 my-1">
+                  <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                    <img src={like} alt="camer" />
+                    <div className="text-TextTitle font-semibold">Like</div>
                   </div>
-                  <div className="text-TextTitle cursor-pointer hover:underline duration-300">
-                    {" "}
-                    19 shares
+                  <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                    <img src={commment} alt="camer" />
+                    <div className="text-TextTitle font-semibold">
+                      Live comment
+                    </div>
                   </div>
+                  <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                    <img src={share} alt="camer" />
+                    <div className="text-TextTitle font-semibold"> Share</div>
+                  </div>
+                  <img src={profile} alt="profile" className="w-[24px]" />
                 </div>
               </div>
-              <Divider className="border-[0.5] border-slate-300 my-4" />
-              {/*------ like botton ------ */}
-              <div className="flex justify-around items-center gap-2 my-1">
-                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
-                  <img src={like} alt="camer" />
-                  <div className="text-TextTitle font-semibold">Like</div>
-                </div>
-                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
-                  <img src={commment} alt="camer" />
-                  <div className="text-TextTitle font-semibold">
-                    Live comment
-                  </div>
-                </div>
-                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
-                  <img src={share} alt="camer" />
-                  <div className="text-TextTitle font-semibold"> Share</div>
-                </div>
-                <img src={profile} alt="profile" className="w-[24px]" />
-              </div>
-                  </div>
-           
             </div>
 
             {/* ------------------Metfone-------------------- */}
@@ -774,62 +822,61 @@ const HomePage = () => {
                 <img src={met3} alt="" className=" w-full" />
                 <img src={met4} alt="" className=" w-full" />
               </div>
-                  <div className="mx-4">
-  {/*------ like section ------ */}
-              <div className="flex justify-between items-center my-4">
-                <div className="flex justify-center items-center gap-2">
-                  <Avatar.Group size={"small"}>
-                    <Avatar className="bg-Link border z-10">
-                      <img src={likes} alt="" />
-                    </Avatar>
-                    <Avatar
-                      maxPopoverPlacement="top"
-                      className="bg-red-500 border"
-                    >
-                      <img src={love} alt="" />
-                    </Avatar>
-                  </Avatar.Group>
-                  <div className="text-TextTitle cursor-pointer hover:underline">
-                    3.6k
+              <div className="mx-4">
+                {/*------ like section ------ */}
+                <div className="flex justify-between items-center my-4">
+                  <div className="flex justify-center items-center gap-2">
+                    <Avatar.Group size={"small"}>
+                      <Avatar className="bg-Link border z-10">
+                        <img src={likes} alt="" />
+                      </Avatar>
+                      <Avatar
+                        maxPopoverPlacement="top"
+                        className="bg-red-500 border"
+                      >
+                        <img src={love} alt="" />
+                      </Avatar>
+                    </Avatar.Group>
+                    <div className="text-TextTitle cursor-pointer hover:underline">
+                      3.6k
+                    </div>
+                  </div>
+                  <div className="flex justify-center items-center gap-2">
+                    <div className="text-TextTitle cursor-pointer hover:underline duration-300">
+                      44 comments{" "}
+                    </div>
+                    <div className="text-TextTitle cursor-pointer hover:underline duration-300">
+                      {" "}
+                      91 shares
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-center items-center gap-2">
-                  <div className="text-TextTitle cursor-pointer hover:underline duration-300">
-                    44 comments{" "}
+                <Divider className="border-[0.5] border-slate-300 my-4" />
+                {/*------ like botton ------ */}
+                <div className="flex justify-around items-center gap-2 my-1">
+                  <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                    <img src={like} alt="camer" />
+                    <div className="text-TextTitle font-semibold">Like</div>
                   </div>
-                  <div className="text-TextTitle cursor-pointer hover:underline duration-300">
-                    {" "}
-                    91 shares
+                  <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                    <img src={commment} alt="camer" />
+                    <div className="text-TextTitle font-semibold">
+                      Live comment
+                    </div>
                   </div>
+                  <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
+                    <img src={share} alt="camer" />
+                    <div className="text-TextTitle font-semibold"> Share</div>
+                  </div>
+                  <img src={profile} alt="profile" className="w-[24px]" />
                 </div>
               </div>
-              <Divider className="border-[0.5] border-slate-300 my-4" />
-              {/*------ like botton ------ */}
-              <div className="flex justify-around items-center gap-2 my-1">
-                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
-                  <img src={like} alt="camer" />
-                  <div className="text-TextTitle font-semibold">Like</div>
-                </div>
-                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
-                  <img src={commment} alt="camer" />
-                  <div className="text-TextTitle font-semibold">
-                    Live comment
-                  </div>
-                </div>
-                <div className="flex justify-center  items-center w-full hover:bg-BgIcon gap-2 cursor-pointer p-3 rounded-xl duration-300">
-                  <img src={share} alt="camer" />
-                  <div className="text-TextTitle font-semibold"> Share</div>
-                </div>
-                <img src={profile} alt="profile" className="w-[24px]" />
-              </div>
-                  </div>
-            
             </div>
           </div>
         </div>
 
         {/* ==================Right Side======================== */}
-        <div className="z-20 hidden md:block w-[318px] max-h-[870px] sticky top-[80px] overflow-y-scroll hidden-scrollbar">
+        <div className="z-20 hidden md:block w-[318px] max-h-[870px] ml-5 sticky top-[80px] overflow-y-scroll hidden-scrollbar">
           <div className="group">
             <div className="flex justify-between items-center mb-2">
               <div className="text-TextTitle font-semibold ">
@@ -839,18 +886,18 @@ const HomePage = () => {
                 Edit
               </div>
             </div>
-            <div className="flex flex-col justify-start items-start  ">
+            <div className="flex flex-col justify-start items-start w-full ">
               <div className=" w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer">
                 <img src={profile} alt="" />
                 <div className="font-bold">TITB Group</div>
               </div>
-              <div className="w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer">
+              <div className=" w-[95%] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer ml-4">
                 <img src={announce} alt="" />
-                <div className="font-bold">Create promotion</div>
+                <div className="font-bold">Switch to Page</div>
               </div>
-              <div className="w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer">
+              <div className=" w-[95%] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer ml-4">
                 <img src={create} alt="" />
-                <div className="font-bold">TITB Group</div>
+                <div className="font-bold">Create promotion</div>
               </div>
             </div>
           </div>
@@ -897,17 +944,17 @@ const HomePage = () => {
 
             <div className="flex flex-col justify-start items-start  ">
               {conversation.map((infoItem) => (
-                  <div
-                    key={infoItem.id}
-                    className=" w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
-                  >
-                    <div className="relative">
-                      <img src={infoItem.logo} alt="" />
-                      <div className=" absolute bottom-1 right-0 border bg-green-500 w-[8px] h-[8px] rounded-full"></div>
-                    </div>
-                    <div className="font-bold">{infoItem.name}</div>
+                <div
+                  key={infoItem.id}
+                  className=" w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
+                >
+                  <div className="relative">
+                    <img src={infoItem.logo} alt="" />
+                    <div className=" absolute bottom-1 right-0 border bg-green-500 w-[8px] h-[8px] rounded-full"></div>
                   </div>
-                ))}
+                  <div className="font-bold">{infoItem.name}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
