@@ -426,7 +426,7 @@ const HomePage = () => {
         </div>
 
         {/* ==================middle======================== */}
-        <div className=" lg:w-[36%] min-w-[483px] md:w-[642px] overflow-hidden ">
+        <div className=" lg:w-[36%] min-w-[330px] md:w-[642px] overflow-hidden  ">
           <div className=" space-y-4 ">
             <div className="w-full  ">
               <Swiper
@@ -435,12 +435,12 @@ const HomePage = () => {
                   prevEl: ".swiper-button-prev",
                   nextEl: ".swiper-button-next",
                 }}
-                slidesPerView={3}
+                slidesPerView={2}
                 spaceBetween={5}
-                className=" mySwiper2 md:w-[600px] lg:w-[642px]"
+                className=" mySwiper2 md:w-[600px] lg:w-[642px] "
                 breakpoints={{
                   640: {
-                    slidesPerView: 3, // Adjust slidesPerView for smaller screens
+                    slidesPerView: 2, // Adjust slidesPerView for smaller screens
                   },
                   768: {
                     slidesPerView: 4,
@@ -451,7 +451,7 @@ const HomePage = () => {
                 }}
               >
                 <SwiperSlide className="flex flex-col group  ">
-                  <div className="w-[140px] h-[250px] bg-white hover:bg-BgIcon felx flex-col justify-center items-center group rounded-xl cursor-pointer overflow-hidden">
+                  <div className="w-[120px] md:w-[140px] h-[250px] bg-white hover:bg-BgIcon felx flex-col justify-center items-center group rounded-xl cursor-pointer overflow-hidden">
                     <div className="overflow-hidden bg-black ">
                       <img
                         src={myprofile}
@@ -481,7 +481,7 @@ const HomePage = () => {
                 </SwiperSlide>
                 {story.map((items, index) => (
                   <SwiperSlide key={index} className="flex flex-col group  ">
-                    <div className="relative w-[140px] h-[250px] rounded-xl overflow-hidden cursor-pointer group">
+                    <div className="relative w-[130px] h-[250px] rounded-xl overflow-hidden cursor-pointer group">
                       <div className="bg-black">
                         <img
                           src={items.story}
