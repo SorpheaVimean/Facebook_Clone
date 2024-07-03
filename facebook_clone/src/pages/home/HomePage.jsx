@@ -64,7 +64,9 @@ import jenny from "../../assets/profileRightSide/Ellipse 6.png";
 
 import { useState } from "react";
 import { Avatar, Divider, Tooltip, Modal } from "antd";
-const HomePage = () => {
+import InfoItem from "../../composable/info_prfile";
+import ProfileIconActive from "../../composable/ProfileIconActive";
+function HomePage() {
   const [showAll, setShowAll] = useState(false);
   const [seeall, setSeeAll] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -304,13 +306,11 @@ const HomePage = () => {
           {/* ----------Infor---------- */}
           <div className="flex flex-col justify-start items-start gap-1 ">
             {info.slice(0, showAll ? info.length : 6).map((infoItem) => (
-              <div
+              <InfoItem
                 key={infoItem.id}
-                className="w-[318px] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
-              >
-                <img src={infoItem.logo} alt="" className="w-[30px]" />
-                <div className="font-bold">{infoItem.name}</div>
-              </div>
+                logo={infoItem.logo}
+                name={infoItem.name}
+              />
             ))}
             <div
               className="w-[318px] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
@@ -342,13 +342,11 @@ const HomePage = () => {
             </div>
             <div className="flex flex-col justify-start items-start gap-1 ">
               {shortcut.slice(0, seeall ? info.length : 5).map((infoItem) => (
-                <div
+                <InfoItem
                   key={infoItem.id}
-                  className="w-[318px] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
-                >
-                  <img src={infoItem.logo} alt="" />
-                  <div className="font-bold">{infoItem.name}</div>
-                </div>
+                  logo={infoItem.logo}
+                  name={infoItem.name}
+                />
               ))}
               <div
                 className="w-[318px] flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-3 rounded-xl cursor-pointer"
@@ -924,17 +922,11 @@ const HomePage = () => {
             </div>
             <div className="flex flex-col justify-start items-start  ">
               {contacts.map((infoItem) => (
-                <div
+                <ProfileIconActive
                   key={infoItem.id}
-                  className="w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
-                >
-                  <div className="relative">
-                    <img src={infoItem.logo} alt="" />
-                    <div className=" absolute bottom-1 right-0 border bg-green-500 w-[8px] h-[8px] rounded-full"></div>
-                  </div>
-
-                  <div className="font-bold">{infoItem.name}</div>
-                </div>
+                  logo={infoItem.logo}
+                  name={infoItem.name}
+                />
               ))}
             </div>
           </div>
@@ -944,16 +936,11 @@ const HomePage = () => {
 
             <div className="flex flex-col justify-start items-start  ">
               {conversation.map((infoItem) => (
-                <div
+                <ProfileIconActive
                   key={infoItem.id}
-                  className=" w-full flex justify-start items-center gap-5 hover:bg-BgIcon duration-300 p-2 rounded-xl cursor-pointer"
-                >
-                  <div className="relative">
-                    <img src={infoItem.logo} alt="" />
-                    <div className=" absolute bottom-1 right-0 border bg-green-500 w-[8px] h-[8px] rounded-full"></div>
-                  </div>
-                  <div className="font-bold">{infoItem.name}</div>
-                </div>
+                  logo={infoItem.logo}
+                  name={infoItem.name}
+                />
               ))}
             </div>
           </div>
@@ -961,6 +948,6 @@ const HomePage = () => {
       </div>
     </>
   );
-};
+}
 
 export default HomePage;

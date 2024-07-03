@@ -75,6 +75,7 @@ import { FcBookmark } from "react-icons/fc";
 import { MdBloodtype } from "react-icons/md";
 import { GiRoyalLove } from "react-icons/gi";
 import { IoLogoWhatsapp } from "react-icons/io";
+import InfoIcon from "../composable/InfoIcon";
 const Header = () => {
   const [activeNav, setActiveNav] = useState("home");
 
@@ -885,15 +886,15 @@ const Header = () => {
             <img src={arrow} alt="arrow" className="-rotate-90" />
           </div>
         </div>
-
-        <div className="flex justify-between items-center  p-2 rounded-xl cursor-pointer hover:bg-BgIcon">
+        <InfoIcon icon={RiErrorWarningFill} name={"Settings & privacy"} />
+        {/* <div className="flex justify-between items-center  p-2 rounded-xl cursor-pointer hover:bg-BgIcon">
           <div className="flex justify-center items-center gap-2">
             <div className="bg-BgHover p-2 rounded-full cursor-pointer  duration-200">
               <RiErrorWarningFill className="text-2xl" />
             </div>
             <div className="font-medium">Settings & privacy</div>
           </div>
-        </div>
+        </div> */}
 
         <div className="flex justify-between items-center  p-2 rounded-xl cursor-pointer hover:bg-BgIcon">
           <div className="flex justify-center items-center gap-2">
